@@ -100,7 +100,7 @@ class BootstrapRenderer extends Nette\Object implements Nette\Forms\IFormRendere
 
 			$formEl = $form->getElementPrototype();
 			if (!($classes = self::getClasses($formEl)) || stripos($classes, 'form-') === FALSE) {
-				$formEl->addClass('form-horizontal');
+				//$formEl->addClass('form-horizontal');
 			}
 
 		} elseif ($mode === 'begin') {
@@ -178,6 +178,7 @@ class BootstrapRenderer extends Nette\Object implements Nette\Forms\IFormRendere
 
 		if ($control instanceof Nette\Forms\ISubmitterControl) {
 			$el->addClass('btn');
+			$el->addClass('btn-default');
 
 		} else {
 			$label = $control->labelPrototype;
@@ -186,11 +187,12 @@ class BootstrapRenderer extends Nette\Object implements Nette\Forms\IFormRendere
 
 			} elseif (!$control instanceof Controls\RadioList) {
 				$label->addClass('control-label');
+				$el->addClass('form-control');
 			}
 
 			$control->setOption('pairContainer', $pair = Html::el('div'));
 			$pair->id = $control->htmlId . '-pair';
-			$pair->addClass('control-group');
+			$pair->addClass('form-group');
 			if ($control->getOption('required', FALSE)) {
 				$pair->addClass('required');
 			}
