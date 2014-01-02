@@ -221,9 +221,7 @@ class BootstrapRenderer extends Nette\Object implements Nette\Forms\IFormRendere
 	 */
 	public function findErrors()
 	{
-		$formErrors = method_exists($this->form, 'getAllErrors')
-			? $this->form->getAllErrors()
-			: $this->form->getErrors();
+		$formErrors = $this->form->getErrors();
 
 		if (!$formErrors) {
 			return array();
